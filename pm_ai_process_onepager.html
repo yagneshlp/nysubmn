@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How I used AI in assignment -  Process Anatomy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --cream:#F7F2E9;
+    --ink:#2A241D;
+    --ink-soft:#5C5347;
+    --rule:#DDD3C0;
+    --accent:#C2703D;
+    --collab:#7E8F5C;
+    --human:#2A241D;
+    --bot:#C2703D;
+    --human-tint:#E3E0D8;
+    --bot-tint:#F1DDCC;
+    --collab-tint:#E3E8D6;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    max-width:840px;
+    margin:0 auto;
+    padding:48px 56px 44px;
+  }
+
+  /* ---------- header ---------- */
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:9px;
+  }
+  h1{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-weight:700;
+    font-size:38px;
+    line-height:1.06;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-size:14.5px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    max-width:600px;
+    margin:0 0 4px;
+  }
+  .byline{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:16px;
+    border-top:1px solid var(--rule);
+    padding-top:9px;
+  }
+
+  /* ---------- the bar ---------- */
+  .bar-section{ margin-top:30px; }
+  .bar-endpoints{
+    display:flex;
+    justify-content:space-between;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:7px;
+  }
+  .bar{
+    display:flex;
+    width:100%;
+    height:32px;
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .seg{ height:100%; border-right:2px solid var(--cream); }
+  .seg:last-child{ border-right:none; }
+  .seg.human{ background:var(--human); }
+  .seg.bot{ background:var(--bot); }
+  .seg.collab{ background:var(--collab); }
+  .s1{ width:20%; }
+  .s2{ width:10%; }
+  .s3{ width:20%; }
+  .s4{ width:45%; }
+  .s5{ width:5%; }
+
+  .legend{
+    display:flex;
+    gap:22px;
+    margin-top:13px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .swatch{ width:10px; height:10px; border-radius:2px; display:inline-block; }
+  .swatch.human{ background:var(--human); }
+  .swatch.bot{ background:var(--bot); }
+  .swatch.collab{ background:var(--collab); }
+
+  /* ---------- philosophy ---------- */
+  .philosophy{
+    margin-top:24px;
+    padding:14px 18px;
+    border-left:3px solid var(--accent);
+    background:#fff;
+    border-radius:0 4px 4px 0;
+  }
+  .philosophy p{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink);
+    margin:0;
+    font-style:italic;
+  }
+
+  /* ---------- stage list ---------- */
+  .stages{ margin-top:28px; border-top:1px solid var(--rule); }
+  .stage{
+    display:grid;
+    grid-template-columns:30px 1fr 90px;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--rule);
+    align-items:start;
+  }
+  .stage-num{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:15px;
+    color:var(--accent);
+    font-weight:600;
+    padding-top:1px;
+  }
+  .stage-title{ font-weight:600; font-size:14px; margin-bottom:3px; color:var(--ink); }
+  .stage-desc{ font-size:12.5px; line-height:1.52; color:var(--ink-soft); }
+  .tag-wrap{ justify-self:end; display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+  .tag{
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-weight:700;
+    padding:3px 8px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .tag.human{ background:var(--human-tint); color:var(--human); }
+  .tag.bot{ background:var(--bot-tint); color:var(--bot); }
+  .tag.collab{ background:var(--collab-tint); color:var(--collab); }
+  .stage-pct{ font-size:11px; font-weight:600; color:var(--ink-soft); }
+
+  /* ---------- pushed past AI ---------- */
+  .pushed{ margin-top:28px; }
+  .pushed-eyebrow{
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .pushed-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .pushed-card{
+    background:#fff;
+    border:1px solid var(--rule);
+    border-left:3px solid var(--accent);
+    border-radius:4px;
+    padding:18px 20px;
+  }
+  .pushed-card h3{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:15px;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .pushed-card p{
+    font-size:12.5px;
+    line-height:1.52;
+    margin:0;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- footer ---------- */
+  .footer{
+    margin-top:26px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    gap:24px;
+    font-size:11px;
+    color:var(--ink-soft);
+    line-height:1.58;
+  }
+  .footer strong{ color:var(--ink); font-weight:600; }
+  .footer .col{ max-width:380px; }
+
+  @media print{
+    body{ background:#fff; }
+    .page{ padding:22px 34px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow">Process Anatomy</div>
+  <h1>How I used AI in assignment</h1>
+  <p class="subtitle">A comprehensive overview of who did what on this take-home assignment</p>
+  <div class="byline">Yagnesh L P · June 2026</div>
+
+  <div class="bar-section">
+    <div class="bar-endpoints">
+      <span>Problem</span>
+      <span>Solution</span>
+    </div>
+    <div class="bar">
+      <div class="seg human s1"></div>
+      <div class="seg collab s2"></div>
+      <div class="seg bot s3"></div>
+      <div class="seg collab s4"></div>
+      <div class="seg bot s5"></div>
+    </div>
+    <div class="legend">
+      <span><i class="swatch human"></i>Human-led</span>
+      <span><i class="swatch bot"></i>Bot-led, directed</span>
+      <span><i class="swatch collab"></i>Collaborative</span>
+    </div>
+  </div>
+
+
+
+  <div class="stages">
+
+    <div class="stage">
+      <div class="stage-num">1</div>
+      <div>
+        <div class="stage-title">Whiteboard the frame</div>
+        <div class="stage-desc">Worked the problem by hand first, no tool open. Sketched a rough hypothesis for Part 1 before bringing anything to a model.</div>
+      </div>
+      <div class="tag-wrap"><span class="tag human">Human</span><span class="stage-pct">20%</span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">2</div>
+      <div>
+        <div class="stage-title">Seed and refine the hypothesis</div>
+        <div class="stage-desc">Took the rough hypothesis into Claude Code. Ran a five-minute check to confirm the brief's own confounds were real before ranking anything, then wrote the framing fully data-blind so it stayed pure. A MECE pass later caught one hypothesis that was quietly the cause of another and forced the whole set onto the funnel's own stage spine.</div>
+      </div>
+      <div class="tag-wrap"><span class="tag collab">Collaborative</span><span class="stage-pct">10%</span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">3</div>
+      <div>
+        <div class="stage-title">Branch the exploration</div>
+        <div class="stage-desc">Ran Part 1's own five-test ladder against the data, slice by slice, instead of a naive before-and-after, branching into multiple checks at once. Alongside it, I kept a four-folder PM OS, an append-only decision log, to track findings and keep agent drift bounded.</div>
+      </div>
+      <div class="tag-wrap"><span class="tag bot">Bot, directed</span><span class="stage-pct">20%</span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">4</div>
+      <div>
+        <div class="stage-title">Pressure-test the draft</div>
+        <div class="stage-desc">Drafts were built under personas, senior data analyst, product, customer, driver, then challenged in a Director-style critique pass; six objections came back and each got verified against the data rather than accepted on faith. Pushed past the brief's own example levers into a full demand-supply-match decomposition, and the first voice pass came back robotic, so I scrapped it and rewrote everything calibrated to my own published writing.</div>
+      </div>
+      <div class="tag-wrap"><span class="tag collab">Collaborative</span><span class="stage-pct">45%</span></div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">5</div>
+      <div>
+        <div class="stage-title">Package and ship</div>
+        <div class="stage-desc">With the solution drafted end to end, Claude built the presentation layer: formatting the solution book, an AI-readable doc, structuring the repo, and a deployable page where useful.</div>
+      </div>
+      <div class="tag-wrap"><span class="tag bot">Bot, directed</span><span class="stage-pct">5%</span></div>
+    </div>
+
+  </div>
+
+    <div class="philosophy">
+    <p>The core philosophy i followed is human and AI. Each have their own strengths, and their own limitations. Key value unlock is from knowing which one the task actually needs.</p>
+  </div>
+
+  <div class="pushed">
+    <div class="pushed-eyebrow">Where I pushed past the AI</div>
+    <div class="pushed-card" style="border-left:3px solid var(--accent);">
+      <h3>The commission-bias catch</h3>
+      <p>The model kept defaulting to Uber's playbook: commission-based pricing logic, even though NY runs zero-commission and that one fact changes what every lever actually does. It had no contextual grounding on the product or the geography, so it reached for the assumptions baked into its training instead of the brief in front of it. I caught this because I expected it going in; that kind of drift is what I watch for by default with any agent. The fix wasn't to argue it out of the assumption each time it surfaced. It was to change how I worked with it at the branching and diagnosing stages: instructed it to be collaborative rather than assertive there, surface the assumption and ask, instead of running confidently in the wrong direction.</p>
+    </div>
+  </div>
+
+  <!-- <div class="footer">
+    <div class="col"><strong>PM OS:</strong> a constitution file read at the start of every session (zero business assumptions, two to three options at every crossroad, no advancing without approval), a four-folder workspace (Foundation, Research, PRD, Decision Log), and an 18-entry append-only decision log in the repo, unedited.</div>
+    <div class="col"><strong>Discipline:</strong> nomenclature held constant throughout, funnel steps are Stage, causation checks are Test, a tier-by-distance-by-time cut is slice. Voice calibrated from my own Substack writing. No em dashes, ever.</div>
+  </div> -->
+
+</div>
+</body>
+</html>

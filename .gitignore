@@ -1,0 +1,33 @@
+# --- Company-provided materials: NOT for public republication ---
+# These are Namma Yatri's proprietary take-home brief and their real (de-identified)
+# ride data. Excluded by default so the repo is safe to host publicly. The reviewer
+# already has them. Remove lines below only if you deliberately want them in the repo.
+data/*.csv
+00_START_HERE_Candidate_Brief.html
+DATA_DICTIONARY.html
+pricing_experiment_log.html
+attached_ai_analysis.html
+PM Prep_Vectorised_Claude.pdf
+
+# --- Private prep: never publish ---
+05_Interview_Prep/
+
+# --- Build / tooling ---
+site/_build/node_modules/
+node_modules/
+site/_qa*.html
+_qa/
+
+# --- Drafts not for publication ---
+SUBMISSION_EMAIL.md
+
+# --- Site build output (sent separately, not for repo) ---
+site/
+
+# --- One-off utility scripts ---
+generate_docx.py
+vercel.json
+
+# --- OS / misc ---
+.DS_Store
+*.log
