@@ -18,24 +18,11 @@ The congestion charge does real work in exactly one slice: Auto Priority at peak
 
 ## The solution
 
-The full written response is split across two folders:
+[`05_Solution/`](05_Solution/) contains the two PDFs submitted with this take-home:
 
-**[`03_Insights/compact/`](03_Insights/compact/)** — The submission-ready version of each Part, condensed for the PDFs. Lead-with-the-verdict structure; this is the version that accompanies the PDF.
+**[`NammaYatri_PM_Solution.pdf`](05_Solution/NammaYatri_PM_Solution.pdf)** — The full written response across all five parts: problem framing, pricing analysis, people and behaviour, the growth lever, and the stress-test of the attached AI analysis.
 
-**[`03_Insights/verbose/`](03_Insights/verbose/)** — The uncut internal docs: the complete reasoning behind every finding, every alternative ruled out, and every decision. Longer and more granular than the submission layer; this is where the thinking lives.
-
-Both folders contain the same eight documents:
-
-| File | What it covers |
-|---|---|
-| `Part1_Framing.md` | Five ranked hypotheses (data-blind), the four-stage funnel, and a five-test causation ladder. Driver cancellation leads; congestion pricing is H3, not H1. |
-| `Part2_DidPricingWork.md` | Two reputation-grade findings: the real Auto Priority peak win (r = +0.80) and the headline failure diagnosis. Competitor guard, dose-response, placebo, and raw count all run. |
-| `Part3_PeopleAndBehaviour.md` | The driver's offer-card blindness, the deadhead-pay experiment design, and the no-quote rider who's structurally invisible in the data. |
-| `Part4_TheConstraint.md` | A MECE demand/supply/match option space for growing rides under zero-commission, and the defended lever: supply-shaping as the zero-cost first move, committed rides as the sequenced endgame. |
-| `Part5_StressTest.md` | Four critiques of the attached AI analysis, each tied to a ship/don't-ship decision. The prompt-trail flag: we reproduced the +14.9%, then showed the mechanism is absent. |
-| `ExecSummary.md` | The ≤5-line ops + exec summary: do / stop-hold / one number to watch. |
-| `HowIWorked.md` | How the work was structured: the PM OS, the sequencing, and the human/AI division of labour. |
-| `Spine.md` | The narrative connective tissue tying all five parts into one coherent argument. |
+**[`NammaYatri_PM_AIProcessOutline.pdf`](05_Solution/NammaYatri_PM_AIProcessOutline.pdf)** — A one-page anatomy of how AI was used across the work: which stages were human-led, which were bot-directed, where the model drifted (commission-bias catch), and how the working system was structured.
 
 ---
 
@@ -76,7 +63,7 @@ python3 02_Research/05_plots.py
 | [`claude.md`](claude.md) | The operating constitution: product context, rules of engagement, writing voice, data-handling rules. |
 | [`01_Foundation/`](01_Foundation/) | Problem statement of record — the shared context written before any data was opened. |
 | [`02_Research/`](02_Research/) | Analysis scripts, findings markdowns, and figures. |
-| [`03_Insights/`](03_Insights/) | The written response, in `compact/` (submission) and `verbose/` (full reasoning). |
+| [`05_Solution/`](05_Solution/) | The two submitted PDFs: the full solution and the AI process outline. |
 | [`04_Decision_Log/tradeoffs.md`](04_Decision_Log/tradeoffs.md) | Append-only audit trail: 19 entries, every fork, the options, the choice, and the why. |
 
 ---
