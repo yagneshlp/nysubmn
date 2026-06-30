@@ -27,6 +27,7 @@ site/
 # --- One-off utility scripts ---
 generate_docx.py
 vercel.json
+pm_ai_process_onepager.html
 
 # --- OS / misc ---
 .DS_Store
